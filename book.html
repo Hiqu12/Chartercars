@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Godalming Taxi - Book Reliable Rides Charterhousecars</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="logo-image.png" type="image/png">
+    <style>
+        :root {
+            --primary: #1a1f36;
+            --accent: #ff6b35;
+            --text: #2d3748;
+            --light: #f8f9fa;
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--light);
+        }
+
+        /* Header Styles */
+        .hero-header {
+            background-color: white;
+            color: black;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .hero-header.scrolled {
+            padding: 1rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        #logo-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b35 25%, #1a1f36 75%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1.5px;
+        }
+
+        /* Hero Section */
+        .booking-hero {
+            background-image: linear-gradient(rgba(26, 31, 54, 0.8), rgba(26, 31, 54, 0.8)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #ff6b35, #feb47b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Booking Form Section */
+        .booking-container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .booking-form-container {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-title h2 {
+            font-size: 2rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: rgb(95, 93, 93);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent);
+        }
+
+        /* Vehicle Selection */
+        .vehicle-selection {
+            margin-top: 30px;
+        }
+
+        .vehicle-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .vehicle-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .vehicle-option:hover {
+            border-color: var(--accent);
+        }
+
+        .vehicle-option.selected {
+            border-color: var(--accent);
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        .vehicle-option input {
+            margin-right: 15px;
+        }
+
+        .vehicle-image {
+            width: 80px;
+            height: 60px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .vehicle-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .vehicle-info {
+            flex: 1;
+        }
+
+        .vehicle-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Confirmation Modal */
+        .confirmation-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .confirmation-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .confirmation-modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .modal-message {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: #64748b;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="hero-header" id="header">
+        <a href="index.html" style="text-decoration: none;">
+            <div class="nav-container">
+                <div class="logo-container">
+                    <img src="logo-image.png" alt="Charter House Cars Logo" class="logo-img" loading="lazy">
+                    <div id="logo-text">CHARTERHOUSECARS</div>
+                </div>
+            </div>
+        </a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="booking-hero">
+        <div class="hero-content">
+            <h1>Exquisite Chauffeur Experiences</h1>
+            <p>Travel in unparalleled luxury with our premium fleet and professional drivers</p>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <div class="booking-container">
+        <div class="booking-form-container">
+            <div class="form-title">
+                <h2>Booking Details</h2>
+                <p>Fill in your details to reserve your booking.</p>
+            </div>
+
+            <form id="bookingForm" class="booking-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName"> <b>First Name</b></label>
+                        <input type="text" id="firstName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName"><b>Last Name</b></label>
+                        <input type="text" id="lastName" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email"><b>Email Address</b></label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone"><b>Phone/Whatsapp</b></label>
+                    <input type="tel" id="phone" class="form-control" required placeholder="+44 1234 567890">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pickupDate"><b>Pickup Date</b></label>
+                        <input type="date" id="pickupDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pickupTime"><b>Pickup Time</b></label>
+                        <input type="time" id="pickupTime" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pickupLocation"><b>Pickup Location</b></label>
+                    <input type="text" id="pickupLocation" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dropoffLocation"><b>Drop-off Location</b></label>
+                    <input type="text" id="dropoffLocation" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialRequests"><b>Special Requests</b></label>
+                    <textarea id="specialRequests" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="vehicle-selection">
+                    <h3 class="summary-title"><b>Select Your Vehicle</b></h3>
+                    <div class="vehicle-options">
+<label class="vehicle-option">
+                            <input type="radio" name="vehicle" value="luxury">
+                            <div class="vehicle-image">
+                                <img src="saloon.jpg" alt="Saloon Car" loading="lazy">
+                            </div>
+                            <div class="vehicle-info">
+                                <div class="vehicle-name">Saloon Car</div>
+                            </div>
+                        </label>
+
+                        <label class="vehicle-option">
+                            <input type="radio" name="vehicle" value="executive" checked>
+                            <div class="vehicle-image">
+                                <img src="executive-car.jpeg" alt="Executive Sedan" loading="lazy">
+                            </div>
+                            <div class="vehicle-info">
+                                <div class="vehicle-name">Executive</div>
+                            </div>
+                        </label>
+                        <label class="vehicle-option">
+                            <input type="radio" name="vehicle" value="luxury">
+                            <div class="vehicle-image">
+                                <img src="SUV-car.jpeg" alt="Luxury SUV" loading="lazy">
+                            </div>
+                            <div class="vehicle-info">
+                                <div class="vehicle-name">Luxury SUV</div>
+                            </div>
+                        </label>
+                        <label class="vehicle-option">
+                            <input type="radio" name="vehicle" value="luxury">
+                            <div class="vehicle-image">
+                                <img src="estate-car.jpeg" alt="Estate Car" loading="lazy">
+                            </div>
+                            <div class="vehicle-info">
+                                <div class="vehicle-name">Estate Car</div>
+                            </div>
+                        </label>
+                       <label class="vehicle-option">
+                            <input type="radio" name="vehicle" value="luxury">
+                            <div class="vehicle-image">
+                                <img src="Van.jpeg" alt="Executive Van" loading="lazy">
+                            </div>
+                            <div class="vehicle-info">
+                                <div class="vehicle-name">Executive Van</div>
+                            </div>
+                        </label>
+  
+
+                        <label class="vehicle-option">
+                            <input type="radio" name="vehicle" value="premium">
+                            <div class="vehicle-image">
+                                <img src="Mpvs.jpeg" alt="MPVs" loading="lazy">
+                            </div>
+                            <div class="vehicle-info">
+                                <div class="vehicle-name">MPVs</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="modal-title">Booking Confirmed!</h3>
+            <p class="modal-message">Thank you for choosing Charter House Cars. Your booking has been submitted successfully.</p>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+   <script>
+    // Firebase config
+    const firebaseConfig = {
+        apiKey: "AIzaSyBhEqtkjqt-_KCRCMmweX4RfySyVZ3OK2E",
+        authDomain: "charterhousecars-5631d.firebaseapp.com",
+        databaseURL: "https://charterhousecars-5631d-default-rtdb.firebaseio.com",
+        projectId: "charterhousecars-5631d",
+        storageBucket: "charterhousecars-5631d.firebasestorage.app",
+        messagingSenderId: "227890687089",
+        appId: "1:227890687089:web:d656b58e6720a42ec2ffd0",
+        measurementId: "G-JRM3HP1W93"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    // Admin WhatsApp number (UK number +44 7853 282578)
+    const ADMIN_WHATSAPP_NUMBER = "447853282578";
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const bookingForm = document.getElementById('bookingForm');
+        const confirmationModal = document.getElementById('confirmationModal');
+        const modalClose = document.querySelector('.modal-close');
+
+        bookingForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                pickupDate: document.getElementById('pickupDate').value,
+                pickupTime: document.getElementById('pickupTime').value,
+                pickupLocation: document.getElementById('pickupLocation').value,
+                dropoffLocation: document.getElementById('dropoffLocation').value,
+                specialRequests: document.getElementById('specialRequests').value,
+                vehicle: document.querySelector('input[name="vehicle"]:checked').nextElementSibling.nextElementSibling.querySelector('.vehicle-name').textContent
+            };
+
+            // Save to Firebase
+            database.ref('bookings').push(formData)
+                .then(() => {
+                    // Show confirmation modal
+                    confirmationModal.classList.add('active');
+                    bookingForm.reset();
+
+                    // Create WhatsApp message with booking details
+                    const whatsappMessage = encodeURIComponent(
+                        `*New Booking Request - Charter House Cars*\n\n` +
+                        `*Customer:* ${formData.firstName} ${formData.lastName}\n` +
+                        `*Email:* ${formData.email}\n` +
+                        `*Phone:* ${formData.phone}\n` +
+                        `*Pickup Date:* ${formData.pickupDate}\n` +
+                        `*Pickup Time:* ${formData.pickupTime}\n` +
+                        `*From:* ${formData.pickupLocation}\n` +
+                        `*To:* ${formData.dropoffLocation}\n` +
+                        `*Vehicle Type:* ${formData.vehicle}\n` +
+                        `${formData.specialRequests ? `*Special Requests:* ${formData.specialRequests}\n` : ''}` +
+                        `\n⏰ Please confirm this booking.`
+                    );
+
+                    // Redirect to WhatsApp after short delay to show modal
+                    setTimeout(() => {
+                        // Use wa.me link (works for both mobile and desktop)
+                        const whatsappUrl = `https://wa.me/${ADMIN_WHATSAPP_NUMBER}?text=${whatsappMessage}`;
+                        
+                        // Open WhatsApp in new tab
+                        window.open(whatsappUrl, '_blank');
+                    }, 1500); // 1.5 second delay so user sees confirmation
+                })
+                .catch((error) => {
+                    alert('Error submitting booking. Please try again.');
+                    console.error(error);
+                });
+        });
+
+        modalClose.addEventListener('click', function () {
+            confirmationModal.classList.remove('active');
+        });
+
+        confirmationModal.addEventListener('click', function (e) {
+            if (e.target === this) {
+                confirmationModal.classList.remove('active');
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

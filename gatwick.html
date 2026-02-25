@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gatwick Airport Transfers | Charter House Cars</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="icon" href="logo-image.png" type="image/png">
+    <style>
+        :root {
+            --primary: #1a1f36;
+            --accent: #ff6b35;
+            --accent-light: #ff8c5a;
+            --text: #2d3748;
+            --light: #f8f9fa;
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--light);
+        }
+
+        /* Header Styles */
+        .hero-header {
+            background-color: white;
+            color: black;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .hero-header.scrolled {
+            padding: 1rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        #logo-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b35 25%, #1a1f36 75%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1.5px;
+            text-shadow: 2px 2px 4px rgba(26, 31, 54, 0.1);
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            text-stroke: 1px rgba(26, 31, 54, 0.2);
+            -webkit-text-stroke: 1px rgba(26, 31, 54, 0.2);
+        }
+
+        /* Hero Section */
+        .airport-hero {
+            background-color: var(--primary);
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+            position: relative;
+            background-image: linear-gradient(rgba(26, 31, 54, 0.8), rgba(26, 31, 54, 0.8)), url('london-gatwick.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Content Section */
+        .airport-container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .airport-info {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .airport-info h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .airport-info p {
+            margin-bottom: 20px;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .terminal-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .terminal-card {
+            flex: 1;
+            min-width: 250px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .terminal-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .booking-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        .booking-btn:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 2rem;
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .airport-info h2 {
+                font-size: 1.8rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            #logo-text {
+                font-size: 1.3rem;
+            }
+            
+            .logo-img {
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="hero-header" id="header">
+        <a href="index.html" style="text-decoration: none;"> <div class="nav-container">
+             <div class="logo-container">
+                 <img src="logo-image.png" alt="Charter House Cars Logo" class="logo-img">
+                 <div id="logo-text">CHARTERHOUSECARS</div>
+             </div>
+         </div>
+     </a>
+     </header>
+
+  <!-- Hero Section -->
+<section class="airport-hero">
+    <div class="hero-content">
+        <h1>Gatwick Airport Transfers</h1>
+        <p>Premium chauffeur services to and from London Gatwick Airport</p>
+    </div>
+</section>
+
+<!-- Content Section -->
+<div class="airport-container">
+    <div class="airport-info">
+        <h2>Gatwick Airport Transfers</h2>
+        <p>Welcome to London Gatwick Airport - As one of the UK's major international airports, we provide seamless transfer services to both North and South terminals. Our professional drivers ensure a stress-free journey to your destination, whether you're traveling for business or leisure.</p>
+        
+        <div class="terminal-info">
+            <div class="terminal-card">
+                <h3>North Terminal</h3>
+                <p>Serves a wide range of international and domestic flights, including carriers like easyJet and Emirates.</p>
+            </div>
+            <div class="terminal-card">
+                <h3>South Terminal</h3>
+                <p>Handles numerous charter and scheduled flights, with airlines such as British Airways and TUI Airways.</p>
+            </div>
+        </div>
+
+        <p>With our flight tracking system, we monitor your arrival time to ensure prompt pickups, even if your flight is delayed. Our meet and greet service includes assistance with luggage and direct transfer to your vehicle.</p>
+        
+        <a href="book.html" target="_parent" class="booking-btn">Book Your Gatwick Transfer</a>
+    </div>
+</div>  
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CharterHouseCars</h3>
+                <div class="footer-links">
+                    <a href="index.html" target="_parent">Home</a>
+                    <a href="about-us.html" target="_parent">About Us</a>
+                    <a href="services.html" target="_parent">Services</a>
+                    <a href="faqs.html" target="_parent">FAQs</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Services</h3>
+                <div class="footer-links">
+                    <a href="airport-transfer.html" target="_parent">Airport Transfers</a>
+                    <a href="corporate.html" target="_parent">Corporate Travel</a>
+                    <a href="special-events.html" target="_parent">Special Events</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <div class="footer-links">
+                   <p><i class="fas fa-phone"></i> &nbsp;01483962169</p>
+                    <p><i class="fas fa-envelope"></i> info@charterhousecars.co.uk</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CharterHouseCars. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

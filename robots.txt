@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://charterhousecars.co.uk/sitemap.xml
